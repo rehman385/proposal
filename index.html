@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Her | PHT-PKT</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body id="main-body">
+
+    <div id="vanta-canvas"></div>
+    <div id="particles-js"></div>
+
+    <main>
+        <!-- HOME -->
+        <section id="page-home" class="page-container active">
+            <div class="glass-card">
+                <i class="fas fa-heart pulse-icon"></i>
+                <h1>Hey Beautiful</h1>
+                <p>I made this little universe just for you — every page, every word, every pixel.</p>
+                <div class="tap-hint">Tap anywhere for a surprise ✨</div>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section id="page-gallery" class="page-container">
+            <h2 class="page-title"><i class="fas fa-camera-retro"></i> Our Memories</h2>
+            <div class="card-stack-wrapper">
+                <div class="card-stack" id="card-stack">
+                    <div class="memory-card" data-idx="0"><img src="images/1.jpeg"><div class="memory-caption">The beginning of us 💕</div></div>
+                    <div class="memory-card" data-idx="1"><img src="images/2.jpeg"><div class="memory-caption">You looked perfect ✨</div></div>
+                    <div class="memory-card" data-idx="2"><img src="images/3.jpeg"><div class="memory-caption">My moonlight 🌙</div></div>
+                    <div class="memory-card" data-idx="3"><img src="images/4.jpeg"><div class="memory-caption">Lost in your eyes 💫</div></div>
+                    <div class="memory-card" data-idx="4"><img src="images/5.jpeg"><div class="memory-caption">My whole world 🥰</div></div>
+                    <div class="memory-card" data-idx="5"><img src="images/6.jpeg"><div class="memory-caption">Pure happiness 💖</div></div>
+                    <div class="memory-card" data-idx="6"><img src="images/7.jpeg"><div class="memory-caption">Beautiful soul 🦋</div></div>
+                    <div class="memory-card" data-idx="7"><img src="images/8.jpeg"><div class="memory-caption">Cherry blossom vibes 🌸</div></div>
+                    <div class="memory-card" data-idx="8"><img src="images/9.jpeg"><div class="memory-caption">Forever yours 💜</div></div>
+                    <div class="memory-card" data-idx="9"><img src="images/10.jpeg"><div class="memory-caption">My rose 🌹</div></div>
+                    <div class="memory-card" data-idx="10"><img src="images/11.jpeg"><div class="memory-caption">Heartbeat 💝</div></div>
+                    <div class="memory-card" data-idx="11"><img src="images/12.jpeg"><div class="memory-caption">Pure love 🤍</div></div>
+                    <div class="memory-card" data-idx="12"><img src="images/13.jpeg"><div class="memory-caption">Forever & always ♾️</div></div>
+                </div>
+                <div class="card-stack-controls">
+                    <button class="stack-btn" id="stack-prev" onclick="stackPrev()"><i class="fas fa-chevron-left"></i></button>
+                    <div class="stack-dots" id="stack-dots"></div>
+                    <button class="stack-btn" id="stack-next" onclick="stackNext()"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="stack-hint"><i class="fas fa-hand-pointer"></i> Swipe or tap arrows &bull; Double-tap to <i class="fas fa-heart" style="color:var(--rose)"></i></div>
+            </div>
+
+            <!-- Lightbox -->
+            <div class="lightbox-overlay" id="lightbox">
+                <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-xmark"></i></button>
+                <button class="lightbox-nav lightbox-prev" onclick="lightboxPrev()"><i class="fas fa-chevron-left"></i></button>
+                <div class="lightbox-img-wrap">
+                    <img id="lightbox-img" src="" alt="Photo">
+                    <div class="lightbox-counter" id="lightbox-counter">1 / 13</div>
+                </div>
+                <button class="lightbox-nav lightbox-next" onclick="lightboxNext()"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- CLOCKS -->
+        <section id="page-clocks" class="page-container">
+            <div class="glass-card">
+                <h2><i class="fas fa-globe-asia"></i> Under the Same Sky</h2>
+                <p style="margin-bottom:10px;">Different places, same heartbeat</p>
+                <div class="dual-clocks">
+                    <div class="clock-box">
+                        <p>🇵🇰 Pakistan</p>
+                        <div id="my-time" class="time-display">00:00:00</div>
+                    </div>
+                    <i class="fas fa-heart heart-link"></i>
+                    <div class="clock-box">
+                        <p>🇵🇭 Philippines</p>
+                        <div id="her-time" class="time-display">00:00:00</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COUNTER -->
+        <section id="page-counter" class="page-container">
+            <div class="glass-card">
+                <h2><i class="fas fa-infinity"></i> Since We Started</h2>
+                <p style="margin-bottom:5px;">Every second with you matters</p>
+                <div class="counter-grid">
+                    <div class="counter-item"><div class="num" id="cnt-days">0</div><div class="label">Days</div></div>
+                    <div class="counter-item"><div class="num" id="cnt-hours">0</div><div class="label">Hours</div></div>
+                    <div class="counter-item"><div class="num" id="cnt-mins">0</div><div class="label">Mins</div></div>
+                    <div class="counter-item"><div class="num" id="cnt-secs">0</div><div class="label">Secs</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MUSIC -->
+        <section id="page-playlist" class="page-container">
+            <div class="glass-card music-player">
+                <h2><i class="fas fa-music"></i> Our Soundtrack</h2>
+                <div class="now-playing">
+                    <div class="album-art" id="album-art"><i class="fas fa-compact-disc"></i></div>
+                    <h3 id="song-title">Perfect</h3>
+                </div>
+                <div class="controls">
+                    <button onclick="prevSong()" class="ctrl-btn"><i class="fas fa-backward-step"></i></button>
+                    <button id="play-pause-btn" class="ctrl-btn main-play"><i class="fas fa-play"></i></button>
+                    <button onclick="nextSong()" class="ctrl-btn"><i class="fas fa-forward-step"></i></button>
+                </div>
+                <div class="track-list">
+                    <div class="track active" onclick="playSpecificSong(0)">Perfect</div>
+                    <div class="track" onclick="playSpecificSong(1)">Let Me Down Slowly</div>
+                    <div class="track" onclick="playSpecificSong(2)">Baby</div>
+                </div>
+                <audio id="main-audio" src="perfect.mp3"></audio>
+            </div>
+        </section>
+
+        <!-- OPEN WHEN -->
+        <section id="page-message" class="page-container">
+            <h2 class="page-title"><i class="fas fa-envelope-open"></i> Open When...</h2>
+            <div class="envelopes-grid">
+                <div class="glass-card env" onclick="openModal('I miss you more than these miles can say. Every second without you feels like forever. But knowing you exist in this world makes everything worth it. 🌙')">
+                    <h3>...you miss me <i class="fas fa-paper-plane"></i></h3>
+                </div>
+                <div class="glass-card env" onclick="openModal('Take a deep breath. You are the strongest person I know. Whatever this is, you will get through it — and I am right here cheering for you. Always. ✨')">
+                    <h3>...you feel stressed <i class="fas fa-star"></i></h3>
+                </div>
+                <div class="glass-card env" onclick="openModal('Close your eyes. Imagine my arms around you, holding you tight. Now open them — that warmth you feel? That is my love reaching you across the distance. 🤍')">
+                    <h3>...you need a hug <i class="fas fa-heart"></i></h3>
+                </div>
+                <div class="glass-card env" onclick="openModal('You are not alone. I am always here — at 3am, at noon, whenever. You are my favorite person and nothing will ever change that. 💫')">
+                    <h3>...you feel alone <i class="fas fa-moon"></i></h3>
+                </div>
+                <div class="glass-card env" onclick="openModal('You are the most beautiful soul I have ever known. Inside and out. Never doubt that. The world is better because you are in it. 🌸')">
+                    <h3>...you doubt yourself <i class="fas fa-crown"></i></h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOVE LIST -->
+        <section id="page-vault" class="page-container">
+            <div class="glass-card">
+                <h2><i class="fas fa-heart"></i> Things I Love About You</h2>
+                <ul class="love-list">
+                    <li><i class="fas fa-heart"></i> Your laugh — the sound I want to hear forever</li>
+                    <li><i class="fas fa-heart"></i> Your aesthetic — you are actual art</li>
+                    <li><i class="fas fa-heart"></i> Our late-night talks until sunrise</li>
+                    <li><i class="fas fa-heart"></i> How you make even boring days feel special</li>
+                    <li><i class="fas fa-heart"></i> Your voice — I could listen to it on loop</li>
+                    <li><i class="fas fa-heart"></i> The way you care so deeply about people</li>
+                    <li><i class="fas fa-heart"></i> Your strength — even when you don't see it</li>
+                    <li><i class="fas fa-heart"></i> Everything. I just love everything about you.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PROMISES -->
+        <section id="page-promises" class="page-container">
+            <div class="glass-card">
+                <h2><i class="fas fa-hand-holding-heart"></i> My Promises</h2>
+                <ul class="promise-list">
+                    <li><i class="fas fa-shield-heart"></i> I will always be honest with you</li>
+                    <li><i class="fas fa-shield-heart"></i> I will never make you feel alone</li>
+                    <li><i class="fas fa-shield-heart"></i> I will fight for us, no matter the distance</li>
+                    <li><i class="fas fa-shield-heart"></i> I will always choose you</li>
+                    <li><i class="fas fa-shield-heart"></i> I will make you smile every single day</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- TYPEWRITER LETTER -->
+        <section id="page-type" class="page-container">
+            <div class="glass-card note-card">
+                <div id="typewriter-text"></div>
+            </div>
+        </section>
+
+        <!-- DATE SPINNER -->
+        <section id="page-dates" class="page-container">
+            <div class="glass-card">
+                <h2><i class="fas fa-dice"></i> Our Next Date?</h2>
+                <p style="margin-bottom:5px;">Fate decides what we do next</p>
+                <div id="date-result" class="date-slot">Tap to Spin ✨</div>
+                <button class="glass-btn" onclick="spinDates()"><i class="fas fa-rotate"></i> Spin the Wheel</button>
+            </div>
+        </section>
+
+        <!-- QUESTION -->
+        <section id="page-question" class="page-container">
+            <div class="glass-card">
+                <h2><i class="fas fa-ring"></i> One Question</h2>
+                <div class="question-text">Will you be mine? 💍</div>
+                <div class="answer-btns">
+                    <button class="glass-btn answer-btn-yes" onclick="answerYes()">Yes 💖</button>
+                    <button class="glass-btn answer-btn-obviously" onclick="answerYes()">Obviously 💜</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="page-contact" class="page-container">
+            <div class="glass-card">
+                <h2><i class="fas fa-envelope-open-text"></i> Send Me a Note</h2>
+                <p style="font-size:0.82rem; margin-bottom:15px; color: #c39bd3;">Write anything — I will read it with the biggest smile</p>
+                <form action="https://formspree.io/f/xeellrlj" method="POST" id="contact-form">
+                    <textarea name="message" placeholder="I'm listening..." required></textarea>
+                    <button type="submit" class="glass-btn" id="send-btn"><i class="fas fa-paper-plane"></i> Send to Muhammed</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <div class="page-indicator" id="page-indicator"></div>
+
+    <nav id="main-nav">
+        <button onclick="navigate('page-home')" class="active"><i class="fas fa-house"></i><span class="nav-label">Home</span></button>
+        <button onclick="navigate('page-gallery')"><i class="fas fa-image"></i><span class="nav-label">Gallery</span></button>
+        <button onclick="navigate('page-clocks')"><i class="fas fa-clock"></i><span class="nav-label">Clocks</span></button>
+        <button onclick="navigate('page-counter')"><i class="fas fa-infinity"></i><span class="nav-label">Counter</span></button>
+        <button onclick="navigate('page-playlist')"><i class="fas fa-music"></i><span class="nav-label">Music</span></button>
+        <button onclick="navigate('page-message')"><i class="fas fa-envelope"></i><span class="nav-label">Letters</span></button>
+        <button onclick="navigate('page-vault')"><i class="fas fa-heart"></i><span class="nav-label">Love</span></button>
+        <button onclick="navigate('page-promises')"><i class="fas fa-shield-heart"></i><span class="nav-label">Promise</span></button>
+        <button onclick="navigate('page-type')"><i class="fas fa-pen-fancy"></i><span class="nav-label">Letter</span></button>
+        <button onclick="navigate('page-dates')"><i class="fas fa-dice"></i><span class="nav-label">Dates</span></button>
+        <button onclick="navigate('page-question')"><i class="fas fa-ring"></i><span class="nav-label">Ask</span></button>
+        <button onclick="navigate('page-contact')"><i class="fas fa-comment"></i><span class="nav-label">Note</span></button>
+    </nav>
+
+    <div class="modal-overlay" id="modal">
+        <div class="glass-card modal-content">
+            <p id="modal-text"></p>
+            <button class="glass-btn" onclick="closeModal()"><i class="fas fa-heart"></i> Close</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
