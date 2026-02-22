@@ -102,12 +102,11 @@ setInterval(updateClocks, 1000);
 updateClocks();
 
 // ═══════════════════════════════════════════════════
-// 7. COUNTDOWN — SINCE ~27 HOURS AGO (Feb 19, 2026 ~6PM PKT)
+// 7. COUNTDOWN — SINCE 1 HOUR AGO
 // ═══════════════════════════════════════════════════
+const COUNTER_START = new Date(Date.now() - 60 * 60 * 1000); // 1 hour ago
 function updateCounter() {
-    // ~27 hours before Feb 20, 2026 midnight = Feb 18, 2026 9:00 PM UTC
-    // Feb 19, 2026 at approx 6:00 PM PKT (UTC+5) = Feb 19, 2026 13:00 UTC
-    const start = new Date('2026-02-19T13:00:00Z'); // Feb 19, 2026 6PM PKT
+    const start = COUNTER_START;
     const now = new Date();
     const diff = now - start;
     
